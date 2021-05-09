@@ -10,3 +10,6 @@ to the procedural or imperative approach in which methods apply a procedure to
 their operand, causing its state to change.
 
 # Composition over inheritance
+
+# Static import
+Static import allows you to access the static member of a class directly without using the fully qualified name.
