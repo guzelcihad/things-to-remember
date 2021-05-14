@@ -1,3 +1,9 @@
+# Algorithmic Paradigms
+* Brute Force
+* Greedy Algorithms
+* Divide and Conquer
+* Dynamic Programming
+
 ## Dynamic Programming
 Dynamic Programming (DP) is an algorithmic technique for solving an optimization problem by breaking it down into simpler subproblems and utilizing the fact that the optimal solution to the overall problem depends upon the optimal solution to its subproblems.
 
@@ -22,3 +28,27 @@ We’ll see this technique in our example of Fibonacci numbers. First, let’s s
 Tabulation is the opposite of the top-down approach and avoids recursion. In this approach, we solve the problem “bottom-up” (i.e. by solving all the related sub-problems first). This is typically done by filling up an n-dimensional table. Based on the results in the table, the solution to the top/original problem is then computed.
 
 Tabulation is the opposite of Memoization, as in Memoization we solve the problem and maintain a map of already solved sub-problems. In other words, in memoization, we do it top-down in the sense that we solve the top problem first (which typically recurses down to solve the sub-problems).
+
+# Sorting
+Q1: Why stability matters in sorting?
+> it can matter when you're sorting objects. If you want to sort based on one field, and then sort based on a second field without undoing the results of the first sort, you have to use a stable sort algorithm.
+
+> For example, let's say you sort employees by last name, and this is the result:
+Kind | Version
+--- | --- |
+John Doe  | 35 | 283 |
+Mary Smith | 28 | 283 |
+Alan Smith | 35 | 283 |
+Jane Smith  | 55 | 283 |
+Bill Wilson   | 35 | 283 |
+
+> Now you want to sort by age, and you want employees with duplicate ages to remain sorted by last name. You have to use a stable sort algorithm to make that happen:
+
+Name                  Age
+Mary Smith          28
+John Doe             35
+Alan Smith           35
+Bill Wilson            35
+Jane Smith           55
+
+> If you don't use a stable sort algorithm, then the three employees with age 35 might not be sorted by last name. So it can make a difference. It will depend on the type of data you're sorting, and what you're trying to do.
