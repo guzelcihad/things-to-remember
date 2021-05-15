@@ -4,6 +4,11 @@
 * Divide and Conquer
 * Dynamic Programming
 
+## Brute Force
+Let’s start off our discussion on algorithms with the most straightforward and exhaustive option—the brute force approach to solving a problem. This method requires us to go through all the possible solutions to the problem we are meaning to solve. For instance, if we have an array of integers and we want to find the minimum, maximum, or a certain element in that array, the brute force approach requires us to go through all the elements to find that specific element. There are no shortcuts and no performance improvements at this stage.
+<br>
+Even though this approach of solving problems is the most inefficient one, it might be the first one that pops into our heads. Also, the good thing about the brute force method is that if a solution to our problem exists, we are guaranteed to find it this way. Once we have a way to go about solving the problem, we can focus on making the solution more efficient.
+
 ## Dynamic Programming
 Dynamic Programming (DP) is an algorithmic technique for solving an optimization problem by breaking it down into simpler subproblems and utilizing the fact that the optimal solution to the overall problem depends upon the optimal solution to its subproblems.
 

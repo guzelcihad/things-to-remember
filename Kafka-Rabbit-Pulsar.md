@@ -14,7 +14,7 @@ Provides a single unified solution for comprehensive set of enterprise messing u
 
 
 ## Pulsar Architecture
-![alt text](images/17.PNG)
+![alt text](images\17.PNG)
 The main difference from Kafka is the seperation of the serving layer and distributed commit log(compute and storage)
 
 * Efficient Tiered Storage
