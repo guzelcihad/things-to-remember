@@ -8,7 +8,7 @@ Simple Object Access Protocol
 * Soap has envelope to define data exchange format with xml
 * It has header and body. Header is optional and useful for authentication , authorization
 * WSDL defines operations, endpoints, request and response structures
-<br>
+
 ![alt text](images/1.PNG)
 
 ## Rest WebService
@@ -18,11 +18,11 @@ HTTP is Hyper Text Transfer Protocol defines the standard of the communication i
 * Http defines request header, body also has methods and status codes.
 * A key abstraction in REST is resource. It is anything that you want to expose to the world.
 For example user, a list of user
-<br>
+
 ![alt text](images/2.PNG)
-<br>
+
 ![alt text](images/3.PNG)
-<br>
+
 ![alt text](images/4.PNG)
 
 Concepts include
