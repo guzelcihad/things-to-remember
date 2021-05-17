@@ -163,6 +163,10 @@ It's a reactive programming tool
 
 ![alt text](images/42.PNG)
 
+![alt text](images/43.PNG)
+
+![alt text](images/44.PNG)
+
 https://www.lightbend.com/
 http://www.reactivemanifesto.org/
 https://www.lightbend.com/reactive-programming-versus-reactive-systems
@@ -180,3 +184,76 @@ This occurs because the backend service that tracks the users state has failed o
 In this scenario, which of the Reactive Principles is the software demonstrating?
 
 > A failure has occurred, but the software isolates that failure in order to remain Responsive. This demonstrates Resilience. The system is not completely Resilient because a portion of the system is still unavailable. But we do demonstrate some Resilience.
+
+
+# Reactive Architecture: DDD
+Software has become an critical part of modern business. Today, all companies are software companies. And as companies grow, their systems grow with them. Over time, small problems become bigger, and soon projects begin to collapse under their own weight. We need tools that will allow us to take those large problems, and decompose them into something smaller, and more manageable.
+<p>
+Domain Driven Design provides techniques to analyze a problem in a more manageable way. This enables developers to focus on the task at hand, without having to worry about all the other complexities surrounding it. 
+<p>
+When you start looking at reactive architecture you'll often come across
+the term domain driven design. Which refers to an architectural approach that
+is used to design the large systems.
+<p>
+As far as goals go for domain driven design
+one of the key goals within it is to take a large system, or a large domain
+rather, and to break it into smaller and smaller pieces.
+<p>
+The problem that we have
+with large domains is that they can be very hard to model. There's a lot of
+rules, a lot of different things that we have to keep in mind when we're trying
+to model a large domain. Trying to do that all in one single coherent model
+can be very difficult or impossible in many cases so because of that we try to
+break things down into small pieces. This gives us a way to determine boundaries
+essentially between those smaller pieces within the larger domain.
+<p>
+Microservices,
+reactive microservices specifically, have a similar goal: they need to be
+separated along clear boundaries. In the case of reactive microservices those
+boundaries need to be asynchronous: each microservice has to have a clearly
+defined API and a specific set of responsibilities. If we don't know what
+the responsibilities of the microservice are then it's going to be very hard to
+build it and design it properly. 
+<p>
+The trick comes when
+we try to determine what those boundaries are. There's no clearly
+defined technique that will just give us the right answer all of the time however
+this is where domain driven design can help us. It does give us a set of
+guidelines and a set of techniques that we can use to try to help us break
+larger domains into smaller domains. Because of that we can take that logic
+and apply it to microservices to come out with something similar. 
+<p>
+If you
+look at reactive frameworks such as Lagom for example Lagom on is built with
+domain driven design in mind. It leverages some of its terminology. If you
+look, for example, it has the concept of a persistent entity in Lagom that maps
+directly on to the concept of an entity which comes from domain driven design.
+Again we'll talk more about that a little later in the course. The key here,
+the key here that we need to realize is that domain driven design can be used in
+the absence of a reactive microservice or a reactive architecture. And you can
+build reactive architectures without domain driven design but because the two are
+very compatible--and they are, they do have similar goals--you'll often find
+them use together.
+
+## Summary
+Often a single all-inclusive model of a very large domain can contain much, and at times overwhelming, complexity. Breaking those large domains into smaller pieces can result in making the complexity more manageable and understandable.
+
+![alt text](images/45.PNG)
+
+![alt text](images/46.PNG)
+
+## Decomposition
+
+![alt text](images/47.PNG)
+
+![alt text](images/48.PNG)
+
+![alt text](images/49.PNG)
+
+![alt text](images/50.PNG)
+
+![alt text](images/51.PNG)
+
+![alt text](images/52.PNG)
+
+## Domain Activities
