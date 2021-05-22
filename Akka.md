@@ -31,3 +31,27 @@ Then we define actors in this system.
 ### Message Types
 Messages can be of any type
 > but must be immutable and serializable. In practice we use case classes and case object
+
+![alt text](images/53.PNG)
+
+![alt text](images/54.PNG)
+
+As a best practice when defining a behaviour in Actor, add this to the companion object.
+<br>
+For ex: if you define counter class it looks like this
+```
+object Counter {
+    case object Increment
+    case object Decrement
+    case Object Print
+}
+class Counter extends Actor
+```
+
+## How Actor Works
+
+![alt text](images/55.PNG)
+
+![alt text](images/56.PNG)
+
+![alt text](images/57.PNG)
