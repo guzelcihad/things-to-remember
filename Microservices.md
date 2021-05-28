@@ -6,7 +6,7 @@ In this case we had issues with consistency. the solution is Transaction Log Tai
 <br>
 The architecture works like this.
 
-![alt text](images\6.PNG)
+![alt text](images/6.PNG)
 
 The most known solution transaction log miner is debezium.
 
@@ -42,8 +42,8 @@ There are two ways of coordination sagas:
 * Choreography - each local transaction publishes domain events that trigger local transactions in other services
 * Orchestration - an orchestrator (object) tells the participants what local transactions to execute
 
-![alt text](images\7.PNG)
-![alt text](images\8.PNG)
+![alt text](images/7.PNG)
+![alt text](images/8.PNG)
 
 > PROS
 * Consistent data
@@ -65,7 +65,7 @@ Disadvantage:
 > The Saga pattern is difficult to debug, especially when many microservices are involved. Also, the event messages could become difficult to maintain if the system gets complex. Another disadvantage of the Saga pattern is it does not have read isolation. For example, the customer could see the order being created, but in the next second, the order is removed due to a compensation transaction.
 
 ## Two Phase Commit
-![alt text](images\9.PNG)
+![alt text](images/9.PNG)
 
 Two-phase commit is an algorithm for achieving atomic transaction commit across
 multiple nodes—i.e., to ensure that either all nodes commit or all nodes abort. It is a
@@ -125,7 +125,7 @@ through an API.
 > Drawbacks -> increased complexity, data inconsistency.
 
 ## CQS
-![alt text](images\10.PNG)
+![alt text](images/10.PNG)
 
 * In CQS commmand and query method can be in the same object/class but seperated in CQRS.
 Key principle looks same.
@@ -138,7 +138,7 @@ A service command typically needs to update the database and send messages/event
 > Solution: A service that uses a relational database inserts messages/events into an outbox table (e.g. MESSAGE) as part of the local transaction. An service that uses a NoSQL database appends the messages/events to attribute of the record (e.g. document or item) being updated. A separate Message Relay process publishes the events inserted into database to a message broker.
 Remember debezium for this approach.
 
-![alt text](images\11.PNG)
+![alt text](images/11.PNG)
 
 Client calls a service to insert, Service will insert this data into Transaction table.
 Then it insert data to an outbox table. Transaction log miner reads data from outbox table
@@ -149,9 +149,9 @@ will update the aggreate/view
 
 > In CQRS, entity that represents report view table commonly known as aggregate
 
-![alt text](images\12.PNG)
+![alt text](images/12.PNG)
 
-![alt text](images\13.PNG)
+![alt text](images/13.PNG)
 
 > Report view/Aggreate, can be in the same db with another schema or in another db.
 > This data is not relational so ElastichSearch or Mongo makes sense for better performance.
