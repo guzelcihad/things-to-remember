@@ -55,3 +55,46 @@ class Counter extends Actor
 ![alt text](images/56.PNG)
 
 ![alt text](images/57.PNG)
+
+## Changing Actor Behaviour
+Think that a scenario where a kid has state happy or sad depending the interaction
+with his mom.
+
+We can do this by storing a var in kid actor. But it is mutable and typically we don't want.
+Instead we define functions and call this functions based on the interaction.
+<br>
+This is where context helps us
+
+```
+  class StatelessFussyKid extends Actor {
+    import FussyKid._
+    import Mom._
+
+    override def receive: Receive = happyReceive
+
+    def happyReceive: Receive = {
+      case Food(VEGETABLE) => context.become(sadReceive, false) // change my receive handler to sadReceive
+      case Food(CHOCOLATE) =>
+      case Ask(_) => sender() ! KidAccept
+    }
+
+    def sadReceive: Receive = {
+      case Food(VEGETABLE) => context.become(sadReceive, false)
+      case Food(CHOCOLATE) => context.unbecome()
+      case Ask(_) => sender() ! KidReject
+    }
+  }
+```
+
+context.become(anotherHandler) => takes two param, default true
+<br>
+means that replaces current handler
+<br>
+context.become(anotherHandler, false) => add anotherHandler to the top of the stack
+<br>
+context.unbecome()  => reverting to the previous behavior => pops out from stack
+
+> Rules: Akka always uses the latest handler on top of the stack. If the stack is empty, it calls receive
+
+Why we use case object:
+> we use case objects for case classes with no arguments - if we were to create a case class, then all the instances of that case class would be equal, so there's no point in creating multiple instances, so we might as well just use one (a case object).
