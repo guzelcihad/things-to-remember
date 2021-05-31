@@ -20,3 +20,7 @@ Delete branches
 ```
 git branch -d <branch-name>
 ```
+Rename branches
+```
+git branch -m <branch-name>
+```

@@ -190,3 +190,193 @@ if any fault happen.
 ## API GW 
 Known as also API Composition. It can be replacement for CQRS.
 CQRS is harder to implement, this patterns so much simple.
+
+
+## SAGA
+### The trouble with distributed transactions
+The traditional approach to maintaining data consistency across multiple services,
+databases, or message brokers is to use distributed transactions. The de facto standard
+for distributed transaction management is the X/Open Distributed Transaction Processing
+(DTP) Model (X/Open XA—see https://en.wikipedia.org/wiki/X/Open_XA).
+XA uses two-phase commit (2PC) to ensure that all participants in a transaction either
+commit or rollback. An XA-compliant technology stack consists of XA-compliant databases
+and message brokers, database drivers, and messaging APIs, and an interprocess
+communication mechanism that propagates the XA global transaction ID. Most SQL
+databases are XA compliant, as are some message brokers. Java EE applications can,
+for example, use JTA to perform distributed transactions.
+<p>
+
+* Popular nosql databases and message brokers doesn't support distributed transaction (Mongo, cassandra, rabbitmq, kafka)
+* Another problem with distributed transactions is that they are a form of synchronous
+IPC, which reduces availability.
+* In order for a distributed transaction to commit,
+all the participating services must be available. As described in chapter 3, the availability
+is the product of the availability of all of the participants in the transaction.
+* Each additional service involved in a distributed
+transaction further reduces availability.
+
+* There is even Eric Brewer’s CAP theorem,
+which states that a system can only have two of the following three properties:
+Consumer Ticket Account
+Data consistency required
+Writes Writes
+createOrder()
+Reads
+Kitchen Service Accounting Service
+Order
+Order Service
+Consumer Service
+The createOrder() operation reads from
+Consumer Service and updates data
+in Order Service, Kitchen Service,
+and Accounting Service. Order
+controller
+Figure 4.1 The createOrder() operation updates data in several services. It must use a
+mechanism to maintain data consistency across those services.
+114 CHAPTER 4 Managing transactions with sagas
+consistency, availability, and partition tolerance (https://en.wikipedia.org/wiki/CAP
+_theorem). Today, architects prefer to have a system that’s available rather than one
+that’s consistent.
+
+To solve the more complex problem
+of maintaining data consistency in a microservice architecture, an application
+must use a different mechanism that builds on the concept of loosely coupled, asynchronous
+services. This is where sagas come in.
+
+* Sagas differ from ACID transactions in a couple of important ways. As I describe in
+detail in section 4.3, they lack the isolation property of ACID transactions. Also, because
+each local transaction commits its changes, a saga must be rolled back using compensating
+transactions.
+
+* Not only does
+using messaging ensure the saga participants are loosely coupled, it also guarantees
+that a saga completes. That’s because if the recipient of a message is temporarily
+unavailable, the message broker buffers the message until it can be delivered.
+
+### Compensating Transactions
+A great feature of traditional ACID transactions is that the business logic can easily
+roll back a transaction if it detects the violation of a business rule. It executes a ROLLBACK
+statement, and the database undoes all the changes made so far. Unfortunately,
+sagas can’t be automatically rolled back, because each step commits its changes to the
+local database. This means, for example, that if the authorization of the credit card
+fails in the fourth step of the Create Order Saga, the FTGO application must explicitly
+undo the changes made by the first three steps. You must write what are known as compensating
+transactions.
+
+* It’s important to
+note that not all steps need compensating transactions. Read-only steps, such as verify-
+ConsumerDetails(), don’t need compensating transactions.
+
+### Reliable event based communication
+* It’s essential that the database update and the publishing of the event happen atomically.
+* The second issue you need to consider is ensuring that a saga participant must
+be able to map each event that it receives to its own data.
+* The solution is for a saga participant to publish events containing
+a **correlation id**, which is data that enables other participants to perform the
+mapping.
+
+For example, the participants of the Create Order Saga can use the orderId as a
+correlation ID that’s passed from one participant to the next. Accounting Service publishes
+a Credit Card Authorized event containing the orderId from the Ticket-
+Created event. When Order Service receives a Credit Card Authorized event, it uses
+the orderId to retrieve the corresponding Order. Similarly, Kitchen Service uses the
+orderId from that event to retrieve the corresponding Ticket.
+
+### BENEFITS AND DRAWBACKS OF CHOREOGRAPHY-BASED SAGAS
+* ***Simplicity***—Services publish events when they create, update, or delete business
+objects.
+* ***Loose coupling*** —The participants subscribe to events and don’t have direct knowledge
+of each other.
+
+And there are some drawbacks:
+* More difficult to understand—Unlike with orchestration, there isn’t a single place
+in the code that defines the saga. Instead, choreography distributes the implementation
+of the saga among the services. Consequently, it’s sometimes difficult
+for a developer to understand how a given saga works.
+
+* Cyclic dependencies between the services—The saga participants subscribe to each
+other’s events, which often creates cyclic dependencies. For example, if you
+carefully examine figure 4.4, you’ll see that there are cyclic dependencies, such
+as Order Service  Accounting Service  Order Service. Although this isn’t
+necessarily a problem, cyclic dependencies are considered a design smell.
+
+* Risk of tight coupling—Each saga participant needs to subscribe to all events that
+affect them. For example, Accounting Service must subscribe to all events that
+cause the consumer’s credit card to be charged or refunded. As a result, there’s
+a risk that it would need to be updated in lockstep with the order lifecycle
+implemented by Order Service.
+
+Choreography can work well for simple sagas, but because of these drawbacks it’s
+often better for more complex sagas to use orchestration. Let’s look at how orchestration
+works.
+
+### BENEFITS AND DRAWBACKS OF ORCHESTRATION-BASED SAGAS
+* ***Simpler dependencies***—One benefit of orchestration is that it doesn’t introduce
+cyclic dependencies. The saga orchestrator invokes the saga participants, but
+the participants don’t invoke the orchestrator. As a result, the orchestrator
+depends on the participants but not vice versa, and so there are no cyclic
+dependencies.
+
+* ***Less coupling***—Each service implements an API that is invoked by the orchestrator,
+so it does not need to know about the events published by the saga
+participants.
+
+* ***Improves separation of concerns and simplifies the business logic***—The saga coordination
+logic is localized in the saga orchestrator. The domain objects are simpler
+and have no knowledge of the sagas that they participate in. For example, when
+using orchestration, the Order class has no knowledge of any of the sagas, so it
+has a simpler state machine model. During the execution of the Create Order
+Saga, it transitions directly from the APPROVAL_PENDING state to the APPROVED
+state. The Order class doesn’t have any intermediate states corresponding to the
+steps of the saga. As a result, the business is much simpler.
+
+Orchestration also has a drawback: the risk of centralizing too much business logic in
+the orchestrator. This results in a design where the smart orchestrator tells the dumb
+services what operations to do. Fortunately, you can avoid this problem by designing
+orchestrators that are solely responsible for sequencing and don’t contain any other
+business logic.
+<p>
+I recommend using orchestration for all but the simplest sagas. Implementing the
+coordination logic for your sagas is just one of the design problems you need to solve.
+Another, which is perhaps the biggest challenge that you’ll face when using sagas, is
+handling the lack of isolation. Let’s take a look at that problem and how to solve it.
+
+### Handling the şack of Isolation
+The I in ACID stands for isolation. The isolation property of ACID transactions ensures
+that the outcome of executing multiple transactions concurrently is the same as if they
+were executed in some serial order. The database provides the illusion that each ACID
+transaction has exclusive access to the data. Isolation makes it a lot easier to write business
+logic that executes concurrently.
+<p>
+The challenge with using sagas is that they lack the isolation property of ACID
+transactions. That’s because the updates made by each of a saga’s local transactions
+are immediately visible to other sagas once that transaction commits. This behavior
+can cause two problems. First, other sagas can change the data accessed by the saga
+while it’s executing. And other sagas can read its data before the saga has completed
+its updates, and consequently can be exposed to inconsistent data. You can, in fact,
+consider a saga to be ACD:
+
+* ***Atomicity***—The saga implementation ensures that all transactions are executed
+or all changes are undone.
+*  ***Consistency***—Referential integrity within a service is handled by local databases.
+Referential integrity across services is handled by the services.
+*  ***Durability***—Handled by local databases.
+
+This lack of isolation potentially causes what the database literature calls anomalies. An
+anomaly is when a transaction reads or writes data in a way that it wouldn’t if transactions
+were executed one at time. When an anomaly occurs, the outcome of executing
+sagas concurrently is different than if they were executed serially.
+<p>
+On the surface, the lack of isolation sounds unworkable. But in practice, it’s common
+for developers to accept reduced isolation in return for higher performance. An
+RDBMS lets you specify the isolation level for each transaction (https://dev.mysql
+.com/doc/refman/5.7/en/innodb-transaction-isolation-levels.html). The default isolation
+level is usually an isolation level that’s weaker than full isolation, also known as
+serializable transactions. Real-world database transactions are often different from
+textbook definitions of ACID transactions.
+<p>
+The next section discusses a set of saga design strategies that deal with the lack of
+isolation. These strategies are known as countermeasures. Some countermeasures implement
+isolation at the application level. Other countermeasures reduce the business
+risk of the lack of isolation. By using countermeasures, you can write saga-based business
+logic that works correctly.

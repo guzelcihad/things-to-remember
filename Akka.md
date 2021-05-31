@@ -98,3 +98,5 @@ context.unbecome()  => reverting to the previous behavior => pops out from stack
 
 Why we use case object:
 > we use case objects for case classes with no arguments - if we were to create a case class, then all the instances of that case class would be equal, so there's no point in creating multiple instances, so we might as well just use one (a case object).
+
+So, what we did with context.become is we created stateless actors.
