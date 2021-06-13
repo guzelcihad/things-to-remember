@@ -2,6 +2,7 @@
 A query language for API and a runtime for fulfilling those queries. <br>
 We give clients the power to ask what they exactly need.
 
+
 <br>
 It is a collection of three things:
 
@@ -60,3 +61,4 @@ It matters because networks suck.
 * Avoid overfetching and underfetching
 * Clients to declare all the data they need in a single network request
 * Reduces the need for client-side joins, error handling, retry logic
+
