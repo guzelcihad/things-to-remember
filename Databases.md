@@ -11,7 +11,7 @@ Isolation levels define the degree to which a transaction must be isolated from 
 
 Durability: The changes in the db should persist. Persistence in the case of failures 
 
-# Reads in Db
+## Reads in Db
 Dirty Read
 > A Dirty read is the situation when a transaction reads a data that has not yet been committed. For example, Let’s say transaction 1 updates a row and leaves it uncommitted, meanwhile, Transaction 2 reads the updated row. If transaction 1 rolls back the change, transaction 2 will have read data that is considered never to have existed.
 
@@ -37,3 +37,10 @@ Jpa provided(javax.annotation) can work on single db operations.
 If you want to provide a transaction guarantee across multiple db or mq, you need Spring provided.
 <br>
 We can also use isolation levels in spring annotation.
+
+# View vs Materialized View
+View | M-View
+--- | --- |
+Doesnt physically hold data | Holds data physically | 283 |
+No mechanism to refresh | Fast/Complete options | 283 |
+Less performance | better performance
