@@ -3,3 +3,4 @@
 * Graalvm, quarkus, micronaut
 * grpc , rest, graphql
 * Partition , caching strategies
+* md5 
