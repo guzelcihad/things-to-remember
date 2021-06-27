@@ -341,7 +341,7 @@ coordination logic for your sagas is just one of the design problems you need to
 Another, which is perhaps the biggest challenge that you’ll face when using sagas, is
 handling the lack of isolation. Let’s take a look at that problem and how to solve it.
 
-### Handling the şack of Isolation
+### Handling the lack of Isolation
 The I in ACID stands for isolation. The isolation property of ACID transactions ensures
 that the outcome of executing multiple transactions concurrently is the same as if they
 were executed in some serial order. The database provides the illusion that each ACID
