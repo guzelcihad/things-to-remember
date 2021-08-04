@@ -1,4 +1,40 @@
 # MICROSERVICES
+
+## Advantages
+- Easier to understand and develop
+- Less jar hell
+- Faster to build and deploy
+- Reduced startup time
+- Scales development: develop, deploy and scale each service independently
+- Eliminate long term commitment to a single technology stack.
+
+## Drawbacks
+- Developing and deploying features that span multiple services requires careful coordination
+
+## When to use?
+In the beginning, you don't need it, it will slow you down.
+
+## Partitioning Strategies
+- By noun, e.g. catalog service
+- by verb, e.g. checkout ui
+- by subdomain
+- single respon. princip
+
+# Deployment Patterns
+- Building and deploying a service must be fast
+- SErvices must be deployed and scaled independently
+- Service instances need to be isolated
+- Deployments must be reliable
+
+## Multiple Services Per Host
+Benefits
+- Efficient resource utilization 
+- Fast deployment
+Drawbacks
+- Poor isolation
+- Difficult to limit resource utilization
+- Poor encapsulation
+
 ## Change Data Capture
 Identify the changes on the data. Database operation and message publishing must be in a transaction.
 The problem with that approach is that some of the components may not be available.
