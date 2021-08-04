@@ -110,3 +110,11 @@ then compare it with db value.
 
 ## Securing a System
 ![alt text](../images/98.PNG)
+
+
+### Sql Injection
+The attackers writes a drop statement and adds comment character at the end of the query.
+So, this way the queries can be able to run and creates problem.
+<br>
+The first and most important step you can take against SQL injection in Java is to use parameterized queries instead of concatenating values.
+![alt text](../images/108.PNG)
