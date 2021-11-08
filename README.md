@@ -31,6 +31,7 @@ before the technical interviews also.
     - [Functional Programming](java/FunctionalProgramming.md)
 6. Kubernetes
     - [Kubernetes](kubernetes/KubernetesDocker.md)
+    - [Detailed information about Kubernetes](https://github.com/guzelcihad/kubernetes-notes/tree/master/new)
 7. Microservices
     - [DDD](microservice/DDD.md)
     - [Microservices In Depth](microservice/Microservices.md)
