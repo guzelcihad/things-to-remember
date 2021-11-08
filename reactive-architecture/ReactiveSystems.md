@@ -125,47 +125,47 @@ trading for that period of time can have drastic consequences. It could mean
 loss of million dollars. So, a short period of time means so much for depending on the industry.
 
 ## The Goal
-![alt text](images/30.PNG)
+![alt text](../images/30.PNG)
 
 ## The Reactive Principles
 A group of people come together and tries to find a pattern to solve those problems.
 
-![alt text](images/31.PNG)
+![alt text](../images/31.PNG)
 
-![alt text](images/32.PNG)
+![alt text](../images/32.PNG)
 
-![alt text](images/33.PNG)
+![alt text](../images/33.PNG)
 
-![alt text](images/34.PNG)
+![alt text](../images/34.PNG)
 
-![alt text](images/35.PNG)
+![alt text](../images/35.PNG)
 
-![alt text](images/36.PNG)
+![alt text](../images/36.PNG)
 
 ## Reactive Programming
 
-![alt text](images/37.PNG)
+![alt text](../images/37.PNG)
 
 The reactive programming can be used to build reactive systems, and quite frequently
 is used to build reactive systems, but just because you use reactive programming
 doesnt mean you've created a reactive systems.
 
-![alt text](images/38.PNG)
+![alt text](../images/38.PNG)
 
 ## The Actor Model
 It's a reactive programming tool
 
-![alt text](images/39.PNG)
+![alt text](../images/39.PNG)
 
-![alt text](images/40.PNG)
+![alt text](../images/40.PNG)
 
-![alt text](images/41.PNG)
+![alt text](../images/41.PNG)
 
-![alt text](images/42.PNG)
+![alt text](../images/42.PNG)
 
-![alt text](images/43.PNG)
+![alt text](../images/43.PNG)
 
-![alt text](images/44.PNG)
+![alt text](../images/44.PNG)
 
 https://www.lightbend.com/
 http://www.reactivemanifesto.org/
@@ -238,22 +238,22 @@ them use together.
 ## Summary
 Often a single all-inclusive model of a very large domain can contain much, and at times overwhelming, complexity. Breaking those large domains into smaller pieces can result in making the complexity more manageable and understandable.
 
-![alt text](images/45.PNG)
+![alt text](../images/45.PNG)
 
-![alt text](images/46.PNG)
+![alt text](../images/46.PNG)
 
 ## Decomposition
 
-![alt text](images/47.PNG)
+![alt text](../images/47.PNG)
 
-![alt text](images/48.PNG)
+![alt text](../images/48.PNG)
 
-![alt text](images/49.PNG)
+![alt text](../images/49.PNG)
 
-![alt text](images/50.PNG)
+![alt text](../images/50.PNG)
 
-![alt text](images/51.PNG)
+![alt text](../images/51.PNG)
 
-![alt text](images/52.PNG)
+![alt text](../images/52.PNG)
 
 ## Domain Activities

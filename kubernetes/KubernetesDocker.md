@@ -3,7 +3,7 @@ Container Runtime which is is renponsible for starting and stopping containers
 basically managing the whole lifecycle
 
 Kubernetes doesnt need some features provided from docker.
-![alt text](images/24.PNG)
+![alt text](../images/24.PNG)
 
 * less resource
 * reduced security risk
@@ -19,7 +19,7 @@ Another alternative container runtime is cri-o which is used by Openshift.
 <br>
 This change doesnt affect to user which uses cloud solutions
 
-So, Do the docker images are gonna work in Kubernetes?
+So, Do the docker ../images are gonna work in Kubernetes?
 > every docker image can run on any container runtime.
 How is this possible?
 > OCI (Open Container Initiative)
@@ -45,7 +45,7 @@ The other advantages that helm provides us is templating engine.
 In Kubernetes we mostly use same config for objects. We can define a common blueprint
 and just refer this configs in files.
 
-![alt text](images/25.PNG)
+![alt text](../images/25.PNG)
 
 ## Istio Service Mesh
 Service mesh manages communication between microservices.
@@ -59,7 +59,7 @@ Why we need that? Because of the microservices arc. has some challenges.
 These non business logic must be added to each app. Developers focus shifted from business logic to 
 non business logic. Also adds complexity to the services.
 
-![alt text](images/26.PNG)
+![alt text](../images/26.PNG)
 
 We dont have to add this sidecar configs. to microservice deployments yaml file.
 <br>
@@ -67,12 +67,12 @@ Because service mesh has control plane that'll automatically inject proxy in eve
 <br>
 Now the microservices can talk to each other through those proxies.
 
-![alt text](images/27.PNG)
+![alt text](../images/27.PNG)
 
 One of the other usefull advantage that service mesh can provide us is traffic splitting.
 This is known as canary deployment.
 
-![alt text](images/28.PNG)
+![alt text](../images/28.PNG)
 
 Service mesh is pattern, Istio is implementation.
 > Istio uses envoy proxy which is independent oss. 
@@ -92,7 +92,7 @@ It's a custom Kubernetes component for 3rd party apps like prometheus, istio etc
 ### Istio Ingress Gateway
 Alternative to nginx ingress.
 
-![alt text](images/29.PNG)
+![alt text](../images/29.PNG)
 
 
 ## StatefulSet

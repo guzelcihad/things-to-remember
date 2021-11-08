@@ -78,29 +78,29 @@ Two implementations in JDK
 * ConcurrentHashMap
 * ConcurrentSkipListMap
 
-![alt text](images/18.PNG)
+![alt text](../images/18.PNG)
 
 Understanding the implementation
 * Needs to be thread safe
 * Needs to be efficient up to a certain number of threads
 * Needs to support a number of efficient, parallel special operations.
 
-![alt text](images/19.PNG)
+![alt text](../images/19.PNG)
 
 
 There is no mechanism to lock a portion of the array in Java. We need to lock the whole array.
 
-![alt text](images/20.PNG)
+![alt text](../images/20.PNG)
 
 What did in JDK is that synchronized the part of the segment instead synchronized the whole array.
 This is how ConcurrentHashMap works. 
 * The implementation has changed in the JDK 8. Parallel methods implemented and can handle heavy concurrency.
 
-![alt text](images/21.PNG)
+![alt text](../images/21.PNG)
 
 ## Concurrent Skip List
-![alt text](images/22.PNG)
-![alt text](images/23.PNG)
+![alt text](../images/22.PNG)
+![alt text](../images/23.PNG)
 
 ## Concurrency vs Parallelism
 Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.

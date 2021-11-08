@@ -127,7 +127,7 @@ Here, the reference variables obj1 and obj2 are of the Shape class, but they are
 
 This is decided during runtime and is, therefore, called dynamic or runtime polymorphism.
 
-![alt text](images/14.PNG)
+![alt text](../images/14.PNG)
 
 # Abstraction
 Abstraction in Object-Oriented Programming refers to showing only the essential features of an object to the user and hiding the inner details to reduce complexity. It can be put this way that the user only has to know “what an object does?” rather than “how it does?”.
@@ -194,7 +194,7 @@ In composition, the lifetime of the owned object depends on the lifetime of the 
 <br>
 A car is composed of an engine, tires, and doors. In this case, a Car owns these objects so a Car is an Owner class and tires,doors and engine classes are Owned classes.
 
-![alt text](images/15.PNG)
-![alt text](images/16.PNG)
+![alt text](../images/15.PNG)
+![alt text](../images/16.PNG)
 
 ## 

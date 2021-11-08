@@ -212,7 +212,7 @@ Today
 * Is an extension of the JVM to support more languages and several execution modes. (Polyglot)
 * Implemented in Java
 * Running an application inside JVM comes with startup and footprint costs
-* To improve that Graalvm has a feature to create native images for existing java applications
+* To improve that Graalvm has a feature to create native ../images for existing java applications
 * This results in a fast startup time and low memory footprint
 
 Architecture
@@ -239,7 +239,7 @@ SuLong for LLVM languages like C and C++
 <br>
 Quarkus interest most AOT
 
-![alt text](images/58.PNG)
+![alt text](../images/58.PNG)
 
 <p>
 When we develop app. we have a business class, external libraries and JDK classes and some necessary components 
@@ -259,7 +259,7 @@ the resulting native binary contains apps in machine code ready for its immediat
 The end result is an app that is faster to start and uses a smaller amount of memory
 This is why Quarkus is great for cloud native and serverless.
 
-![alt text](images/59.PNG)
+![alt text](../images/59.PNG)
 
 ## Quarkus Architecture
 Quarkus does a lot of things, persistence, transaction, microservices, reactive messaging and so on.
@@ -285,34 +285,34 @@ Ok, where is the trick here?
 > Quarkus uses Jandex to index classes and Gizmo to produce bytecode, but at build time, not at runtime.
 That makes a huge difference.
 
-![alt text](images/60.PNG)
+![alt text](../images/60.PNG)
 
 ## Build Time vs Runtime
 Quarkus is fast and consumes less resources than most Java frameworks because it processes the code at build time instead of at runtime. Let's see why it matters. If you come from the Jakarta EE of Spring world, you know that most of the work of an application server is performed at runtime, not at build time. In fact, in a typical Java framework, at build time, we only compile and package our code into a JAR or WAR file and deploy it. 
 
-![alt text](images/61.PNG)
+![alt text](../images/61.PNG)
 
 
 Then we wait for the application server to start, and why do we have to wait? Because first, the server has to load the configuration of the application, it looks for all the configuration files from several JAR files, passes them, and loads them. 
 
-![alt text](images/62.PNG)
+![alt text](../images/62.PNG)
 
 Then it does classpath scanning. This means that it has to find all the annotated classes in all the JAR files. 
 
-![alt text](images/63.PNG)
+![alt text](../images/63.PNG)
 
 Then it builds the class model. This means that it prepares the classes for reflection, create proxies, and generate Bytecode if needed. 
 
-![alt text](images/64.PNG)
+![alt text](../images/64.PNG)
 
 Then finally, the application is ready and can accept requests, but as you can see, we have to wait for the server to complete all these tasks. 
 
-![alt text](images/65.PNG)
+![alt text](../images/65.PNG)
 
 Quarkus goes the other way around. When a Quarkus application is built, some work that usually happens at runtime is moved to the build time. When you compile the Quarkus application, the configuration files are loaded and passed. The classpath scanning is made, and the index created, the same index that will be used at runtime, thanks to Jandex. Then it does the annotation discovery, declares which classes need reflection at runtime, and generates started proxies to avoid reflection, thanks to Gizmo. And everything is packaged into a JAR file. So when Quarkus starts, most of the application has been precomputed, all the annotations scanned, all the XML passed, and so on. These are several benefits. The first one is that all the work is done once at build time and not at each start so you don't waste time waiting each time you startup Quarkus. As much as possible, Quarkus tries to avoid reflection or dynamic proxies. Instead, it generates the need by code at build time. All in all, all these optimizations reduce startup time and memory usage. 
 
-![alt text](images/66.PNG)
+![alt text](../images/66.PNG)
 
 If you compare both strategies, the one used by traditional Java frameworks in Quarkus, you realize why applications start much faster. Traditional servers take too much time booting because they have to do more processing before being able to handle the first requests. Quarkus starts quickly, and this is on our spot. When compiler will grab VM in building a native binary, then Quarkus boots even faster, but how fast?
 
-![alt text](images/67.PNG)
+![alt text](../images/67.PNG)
