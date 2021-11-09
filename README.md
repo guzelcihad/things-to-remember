@@ -29,9 +29,11 @@ before the technical interviews also.
     - [Quarkus](java/Quarkus.md)
     - [Concurrency](java/Concurrency.md)
     - [Functional Programming](java/FunctionalProgramming.md)
+    - [Reflection](https://github.com/guzelcihad/java-reflection)
 6. Kubernetes
     - [Kubernetes](kubernetes/KubernetesDocker.md)
     - [Detailed information about Kubernetes](https://github.com/guzelcihad/kubernetes-notes/tree/master/new)
+    - [Cheatsheet](https://github.com/guzelcihad/kubernetes-cheat-sheet)
 7. Microservices
     - [DDD](microservice/DDD.md)
     - [Microservices In Depth](microservice/Microservices.md)
@@ -45,3 +47,22 @@ before the technical interviews also.
     - [Akka](reactive-architecture/Akka.md)
 9. Webservices
     - [Webservices](webservice/Webservices.md)
+10. Design Patterns
+    - [Patterns](https://github.com/guzelcihad/design-patterns)
+11. Istio
+    - [Istio](https://github.com/guzelcihad/istio)
+12. Docker
+    - [Docker](https://github.com/guzelcihad/docker-notes)
+    - [Cheatsheet](https://github.com/guzelcihad/docker-cheat-sheet)
+13. Python
+    - [Python Refresher](https://github.com/guzelcihad/python-refresher)
+14. Scala
+    - [Beginners](https://github.com/guzelcihad/scala-beginners)
+15. Apache Flink
+    - [Processing Model](https://github.com/guzelcihad/flink-processing-model)
+16. Apache Spark
+    - [2.x Notes](https://github.com/guzelcihad/spark-2.x_notes)
+
+    
+
+
