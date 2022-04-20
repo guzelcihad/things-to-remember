@@ -13,6 +13,7 @@ before the technical interviews also.
     - [ACID](db/ACID.md)
     - [Entity Relationship Diagram](db/ERD-Design.md)
     - [CAP](db/CAP.md)
+    - [MongoDB](https://github.com/guzelcihad/mongodb-notes)
 4. Git
     - [git](git/Git.md)
 5. Graphql
@@ -54,14 +55,18 @@ before the technical interviews also.
 12. Docker
     - [Docker](https://github.com/guzelcihad/docker-notes)
     - [Cheatsheet](https://github.com/guzelcihad/docker-cheat-sheet)
-13. Python
-    - [Python Refresher](https://github.com/guzelcihad/python-refresher)
-14. Scala
-    - [Beginners](https://github.com/guzelcihad/scala-beginners)
-15. Apache Flink
-    - [Processing Model](https://github.com/guzelcihad/flink-processing-model)
-16. Apache Spark
-    - [2.x Notes](https://github.com/guzelcihad/spark-2.x_notes)
+13. Programming Languages
+    - [Python](https://github.com/guzelcihad/python-refresher)
+    - [Scala](https://github.com/guzelcihad/scala-beginners)
+    - [Shell Scripting](https://github.com/guzelcihad/shell-scripting) 
+14. Distributed Processing Frameworks
+    - [Apache Flink](https://github.com/guzelcihad/flink-processing-model)
+    - [Apache Spark](https://github.com/guzelcihad/spark-2.x_notes)
+15. System Administration
+    - [Storage](https://github.com/guzelcihad/storage-notes)
+    - [Nginx](https://github.com/guzelcihad/nginx-notes)
+    
+    
 
     
 
